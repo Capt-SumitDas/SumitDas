@@ -113,41 +113,41 @@ body {
 
 #intro .content .title {
     font-size: 3vw;
-    margin-bottom: 15%
+    margin-bottom: 5%
 }
 
 #intro .content .text {
     position: absolute;
-    top: 20%;
+    top: 5%;
     left: 50%;
     right: 5%;
-    font-size: 1.5vw
+    font-size: 1.2vw
 }
 
 #about .content .title {
     font-size: 3vw;
-    margin-bottom: 15%
+    margin-bottom: 5%
 }
 
 #about .content .text {
     position: absolute;
-    top: 20%;
+    top: 5%;
     left: 5%;
     right: 50%;
-    font-size: 1.5vw
+    font-size: 1.2vw
 }
 
 #experience .content .title {
     font-size: 1.5vw;
-    margin-bottom: 15%
+    margin-bottom:5%
 }
 
 #experience .content .text {
     position: absolute;
-    top: 20%;
+    top: 5%;
     left: 50%;
     right: 5%;
-    font-size: 1.5vw
+    font-size: 1.2vw
 }
 
 .button {
@@ -822,7 +822,7 @@ form button {
     }
 
     .content .text p {
-        font-size: 2vw
+        font-size: 1.46vw
     }
 
     .edu1 {
