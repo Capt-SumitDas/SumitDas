@@ -741,9 +741,20 @@ form button {
     fill: #1e1a1a;
   }
   /* Customize the appearance of the subsections */
-  [data-section] {
-    fill: #1e1a1a;
-  }
+  rect[data-section] {
+    fill: #1e1a1a; /* Change to a desired color */
+    stroke: #1e1a1a;
+    stroke-width: 2;
+}
+
+/* Style the subsection names */
+text[data-section] {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    fill: #bcb4b4; /* Change to a contrasting color */
+    text-anchor: middle;
+}
+
   
 
 @media only screen and (min-width:768px) {

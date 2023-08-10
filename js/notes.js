@@ -70,6 +70,8 @@ function drawCurvedLineWithAdjustedArrow(lineGroup, pointA, pointB) {
     path.style.strokeDasharray = path.getTotalLength(); // Set the length of the line
     path.style.strokeDashoffset = path.getTotalLength(); // Set the offset to the length of the line
     path.style.animation = "drawLine 2s linear forwards"; // Use CSS keyframes to animate the line drawing
+
+    
 }
 
 function hideAllSubsections() {
