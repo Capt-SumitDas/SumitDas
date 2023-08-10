@@ -697,6 +697,55 @@ form button {
     max-width: 100%
 }
 
+
+/* Notes section start */
+/* CSS keyframes animation for drawing the line */
+@keyframes drawLine {
+    to {
+      stroke-dashoffset: 0; /* The line is fully drawn */
+    }
+  }
+  
+  /* Customize the appearance of the sections and subsections */
+  rect {
+    /* stroke: black;
+    stroke-width: 2; */
+    rx: 10;
+    ry: 10;
+  }
+  
+  #Cybersecurity rect {
+    fill: #1e1a1a;
+  }
+  
+  #webdev rect {
+    fill: #1e1a1a;
+  }
+  
+  #Programing rect {
+    fill:#1e1a1a;
+  }
+  
+  #Networking rect {
+    fill: #1e1a1a;
+  }
+
+  #OS rect {
+    fill: #1e1a1a;
+  }
+
+  #Psychology rect {
+    fill: #1e1a1a;
+  }
+  #Internalsecurity rect {
+    fill: #1e1a1a;
+  }
+  /* Customize the appearance of the subsections */
+  [data-section] {
+    fill: #1e1a1a;
+  }
+  
+
 @media only screen and (min-width:768px) {
     .timeline:before {
         content: "";

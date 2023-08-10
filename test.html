@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Curved Lines with Animated Loading Effect</title>
+</head>
+<body>
+  <svg id="lineCanvas" width="500" height="600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Section A -->
+    <g id="sectionA" onclick="showSubsections('sectionA')">
+      <rect x="50" y="100" width="100" height="50" fill="blue" />
+    </g>
+    <!-- Subsection A1 -->
+    <rect data-section="sectionA" x="350" y="70" width="50" height="30" fill="lightblue" style="display: none;" />
+    <!-- Subsection A2 -->
+    <rect data-section="sectionA" x="350" y="120" width="50" height="30" fill="lightblue" style="display: none;" />
+    <!-- Subsection A3 -->
+    <rect data-section="sectionA" x="350" y="170" width="50" height="30" fill="lightblue" style="display: none;" />
+
+    <!-- Section B -->
+    <g id="sectionB" onclick="showSubsections('sectionB')">
+      <rect x="50" y="200" width="100" height="50" fill="green" />
+    </g>
+    <!-- Subsection B1 -->
+    <rect data-section="sectionB" x="350" y="170" width="50" height="30" fill="lightgreen" style="display: none;" />
+    <!-- Subsection B2 -->
+    <rect data-section="sectionB" x="350" y="220" width="50" height="30" fill="lightgreen" style="display: none;" />
+    <!-- Subsection B3 -->
+    <rect data-section="sectionB" x="350" y="270" width="50" height="30" fill="lightgreen" style="display: none;" />
+
+    <!-- Section C -->
+    <g id="sectionC" onclick="showSubsections('sectionC')">
+      <rect x="50" y="300" width="100" height="50" fill="red" />
+    </g>
+    <!-- Subsection C1 -->
+    <rect data-section="sectionC" x="350" y="270" width="50" height="30" fill="lightcoral" style="display: none;" />
+    <!-- Subsection C2 -->
+    <rect data-section="sectionC" x="350" y="320" width="50" height="30" fill="lightcoral" style="display: none;" />
+    <!-- Subsection C3 -->
+    <rect data-section="sectionC" x="350" y="370" width="50" height="30" fill="lightcoral" style="display: none;" />
+
+    <!-- Section D -->
+    <g id="sectionD" onclick="showSubsections('sectionD')">
+      <rect x="50" y="400" width="100" height="50" fill="orange" />
+    </g>
+    <!-- Subsection D1 -->
+    <rect data-section="sectionD" x="350" y="370" width="50" height="30" fill="lightgoldenrodyellow" style="display: none;" />
+    <!-- Subsection D2 -->
+    <rect data-section="sectionD" x="350" y="420" width="50" height="30" fill="lightgoldenrodyellow" style="display: none;" />
+    <!-- Subsection D3 -->
+    <rect data-section="sectionD" x="350" y="470" width="50" height="30" fill="lightgoldenrodyellow" style="display: none;" />
+
+    <!-- The curved lines with adjusted arrows will be drawn here -->
+    <g id="lineGroup"></g>
+  </svg>
+
+  <script>
+    // Define the coordinates as variables for easy modification
+    const sectionAStart = { x: 150, y: 125 };
+    const subsectionA1Start = { x: 350, y: 70 };
+    const subsectionA2Start = { x: 350, y: 120 };
+    const subsectionA3Start = { x: 350, y: 170 };
+
+    const sectionBStart = { x: 150, y: 225 };
+    const subsectionB1Start = { x: 350, y: 170 };
+    const subsectionB2Start = { x: 350, y: 220 };
+    const subsectionB3Start = { x: 350, y: 270 };
+
+    const sectionCStart = { x: 150, y: 325 };
+    const subsectionC1Start = { x: 350, y: 270 };
+    const subsectionC2Start = { x: 350, y: 320 };
+    const subsectionC3Start = { x: 350, y: 370 };
+
+    const sectionDStart = { x: 150, y: 425 };
+    const subsectionD1Start = { x: 350, y: 370 };
+    const subsectionD2Start = { x: 350, y: 420 };
+    const subsectionD3Start = { x: 350, y: 470 };
+
+    function drawCurvedLineWithAdjustedArrow(lineGroup, pointA, pointB) {
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+      // Calculate the control points for the two Bezier curves
+      const controlPoint1X = pointA.x + (pointB.x - pointA.x) / 4;
+      const controlPoint1Y = pointA.y;
+      const controlPoint2X = pointB.x - (pointB.x - pointA.x) / 4;
+      const controlPoint2Y = pointB.y;
+
+      const d = `M ${pointA.x} ${pointA.y} Q ${controlPoint1X} ${controlPoint1Y} ${pointA.x + (pointB.x - pointA.x) / 2} ${(pointA.y + pointB.y) / 2} Q ${controlPoint2X} ${controlPoint2Y} ${pointB.x} ${pointB.y}`;
+
+      path.setAttribute("d", d);
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "black"); // Change the line color here
+      path.setAttribute("stroke-width", "2"); // Change the line thickness here
+
+      lineGroup.appendChild(path);
+
+      // Animate the drawing of the line
+      path.style.strokeDasharray = path.getTotalLength(); // Set the length of the line
+      path.style.strokeDashoffset = path.getTotalLength(); // Set the offset to the length of the line
+      path.style.animation = "drawLine 2s linear forwards"; // Use CSS keyframes to animate the line drawing
+    }
+
+    function hideAllSubsections() {
+      const subsections = document.querySelectorAll("[data-section]");
+      subsections.forEach(subsection => {
+        subsection.style.display = "none";
+      });
+    }
+
+    function showSubsections(sectionId) {
+      hideAllSubsections();
+      const subsections = document.querySelectorAll(`[data-section="${sectionId}"]`);
+      subsections.forEach(subsection => {
+        subsection.style.display = "block";
+      });
+
+      // Remove existing lines from the line group
+      const lineGroup = document.getElementById("lineGroup");
+      while (lineGroup.firstChild) {
+        lineGroup.removeChild(lineGroup.firstChild);
+      }
+
+      // Draw the lines for the current section and its subsections
+      if (sectionId === "sectionA") {
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionAStart, subsectionA1Start);
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionAStart, subsectionA2Start);
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionAStart, subsectionA3Start);
+      } else if (sectionId === "sectionB") {
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionBStart, subsectionB1Start);
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionBStart, subsectionB2Start);
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionBStart, subsectionB3Start);
+      } else if (sectionId === "sectionC") {
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionCStart, subsectionC1Start);
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionCStart, subsectionC2Start);
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionCStart, subsectionC3Start);
+      } else if (sectionId === "sectionD") {
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionDStart, subsectionD1Start);
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionDStart, subsectionD2Start);
+        drawCurvedLineWithAdjustedArrow(lineGroup, sectionDStart, subsectionD3Start);
+      }
+    }
+
+  </script>
+  <style>
+    /* CSS keyframes animation for drawing the line */
+    @keyframes drawLine {
+      to {
+        stroke-dashoffset: 0; /* The line is fully drawn */
+      }
+    }
+  </style>
+</body>
+</html>
