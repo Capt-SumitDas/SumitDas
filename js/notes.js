@@ -5,47 +5,48 @@ const CybersecurityStart = { x: 400, y: 230 };
 const subCybersecurity1Start = { x: 700, y: 110 };
 const subCybersecurity2Start = { x: 730, y: 160 };
 const subCybersecurity3Start = { x: 700, y: 210 };
-const subCybersecurity4Start = { x: 700, y: 260 };
-const subCybersecurity5Start = { x: 730, y: 310 };
-const subCybersecurity6Start = { x: 700, y: 360 };
+const subCybersecurity4Start = { x: 730, y: 260 };
+const subCybersecurity5Start = { x: 700, y: 310 };
+const subCybersecurity6Start = { x: 730, y: 360 };
 const subCybersecurity7Start = { x: 700, y: 410 };
 const subCybersecurity8Start = { x: 730, y: 460 };
 const subCybersecurity9Start = { x: 700, y: 510 };
-const subCybersecurity10Start = { x: 700, y: 560 };
+const subCybersecurity10Start = { x: 730, y: 560 };
 
 
 const webdevStart = { x: 400, y: 330 };
-const subwebdev1Start = { x: 700, y: 180 };
-const subwebdev2Start = { x: 730, y: 230 };
-const subwebdev3Start = { x: 700, y: 280 };
-const subwebdev4Start = { x: 700, y: 330 };
-const subwebdev5Start = { x: 730, y: 380 };
-const subwebdev6Start = { x: 700, y: 430 };
-const subwebdev7Start = { x: 700, y: 480 };
+const subwebdev1Start = { x: 700, y: 160 };
+const subwebdev2Start = { x: 730, y: 210 };
+const subwebdev3Start = { x: 700, y: 260 };
+const subwebdev4Start = { x: 730, y: 310 };
+const subwebdev5Start = { x: 700, y: 360 };
+const subwebdev6Start = { x: 730, y: 410 };
+const subwebdev7Start = { x: 700, y: 460 };
 
 const ProgramingStart = { x: 400, y: 430 };
-const subPrograming1Start = { x: 700, y: 280 };
-const subPrograming2Start = { x: 730, y: 330 };
-const subPrograming3Start = { x: 700, y: 380 };
-const subPrograming4Start = { x: 730, y: 430 };
-const subPrograming5Start = { x: 700, y: 480 };
+const subPrograming1Start = { x: 700, y: 310 };
+const subPrograming2Start = { x: 730, y: 360 };
+const subPrograming3Start = { x: 700, y: 410 };
+const subPrograming4Start = { x: 730, y: 460 };
+const subPrograming5Start = { x: 700, y: 510 };
 
 const NetworkingStart = { x: 400, y: 530 };
-const subNetworking1Start = { x: 700, y: 380 };
+const subNetworking1Start = { x: 700, y: 410 };
 
 const OSStart = { x: 400, y: 630 };
-const subOS1Start = { x: 700, y: 530 };
-const subOS2Start = { x: 730, y: 580 };
-const subOS3Start = { x: 700, y: 630 };
+const subOS1Start = { x: 700, y: 510 };
+const subOS2Start = { x: 730, y: 560 };
+const subOS3Start = { x: 700, y: 610 };
 
 const PsychologyStart = { x: 400, y: 730 };
-const subPsychology1Start = { x: 700, y: 680 };
-const subPsychology2Start = { x: 730, y: 730 };
-const subPsychology3Start = { x: 700, y: 780 };
-const subPsychology4Start = { x: 700, y: 830 };
+const subPsychology1Start = { x: 700, y: 610 };
+const subPsychology2Start = { x: 730, y: 660 };
+const subPsychology3Start = { x: 700, y: 710 };
+const subPsychology4Start = { x: 730, y: 760 };
+const subPsychology5Start = { x: 700, y: 810 };
 
 const InternalsecurityStart = { x: 400, y: 830 };
-const subInternalsecurity1Start = { x: 700, y: 830 };
+const subInternalsecurity1Start = { x: 700, y: 710 };
 
 
 function drawCurvedLineWithAdjustedArrow(lineGroup, pointA, pointB) {
@@ -148,6 +149,7 @@ function showSubsections(sectionId) {
         drawCurvedLineWithAdjustedArrow(lineGroup, PsychologyStart, subPsychology2Start);
         drawCurvedLineWithAdjustedArrow(lineGroup, PsychologyStart, subPsychology3Start);
         drawCurvedLineWithAdjustedArrow(lineGroup, PsychologyStart, subPsychology4Start);
+        drawCurvedLineWithAdjustedArrow(lineGroup, PsychologyStart, subPsychology5Start);
     }
     else if (sectionId === "Internalsecurity") {
         drawCurvedLineWithAdjustedArrow(lineGroup, InternalsecurityStart, subInternalsecurity1Start);
