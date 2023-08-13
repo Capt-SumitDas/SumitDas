@@ -740,6 +740,9 @@ form button {
   #Internalsecurity rect {
     fill: #1e1a1a;
   }
+  #VersionControl rect {
+    fill: #1e1a1a;
+  }
   /* Customize the appearance of the subsections */
   rect[data-section] {
     fill: #1e1a1a; /* Change to a desired color */

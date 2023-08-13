@@ -1,0 +1,750 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Git</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #262626;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: #bcb4b4
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="f9b80072-97b3-404d-bf22-8df9afec7c28" class="page sans"><header><h1 class="page-title">Git</h1><p class="page-description"></p></header><div class="page-body"><p id="f344b93f-387b-4b33-9b30-8d260f6a4023" class="">
+</p><p id="ddd1d1f1-c13d-4fab-843d-b4056a890e1d" class="">
+</p><p id="ea428524-dc1a-4be7-b48d-27b436f332c4" class="">Create a new repository on the command line</p><pre id="f62a9436-7ab2-4749-80a9-e82f000e27cb" class="code"><code>git init
+git add README.md
+git commit -m &quot;first commit&quot;
+git remote add origin git@github.com:Capt-SumitDas/SumitDas.git
+git remote add origin https://github.com/Capt-SumitDas/Git.git
+git push -u origin master
+
+</code></pre><p id="e931bf76-0032-4282-92a1-d120048b7cca" class="">
+</p><p id="048921a7-864b-419b-a8cb-3c35e6f05672" class="">Push an existing repository from the command line</p><pre id="efa8e3fc-4ef4-4bc8-961f-71feab8d2644" class="code"><code>git remote add origin git@github.com:Capt-SumitDas/test.git
+git push -u origin master</code></pre><p id="3d29ab7a-12a0-4dbe-bda6-e02606ea9951" class="">
+</p><p id="b6ef9ea1-b562-4150-86dd-28caf29be216" class="">
+</p><figure id="462ee964-b469-4730-85d2-7492bdecae26" class="image"><a href="Git/2023-01-04_12_38_46-Git__Three_Stage_Architecture___Git_Tutorials_3_-_YouTube_-_Brave.png"><img style="width:816px" src="Git/2023-01-04_12_38_46-Git__Three_Stage_Architecture___Git_Tutorials_3_-_YouTube_-_Brave.png"/></a></figure><figure id="be0360be-02ff-4b67-bd55-b40dc1e9f726" class="image"><a href="Git/2023-01-04_12_39_21-Git__File_Status_Lifecycle___Git_Tutorials_6_-_YouTube_-_Brave.png"><img style="width:823px" src="Git/2023-01-04_12_39_21-Git__File_Status_Lifecycle___Git_Tutorials_6_-_YouTube_-_Brave.png"/></a></figure><p id="cca8b051-83f5-4702-9613-be5a893d0ffa" class="">
+</p><p id="b8107b9e-1efa-4a3d-9d68-1e15161c5a76" class=""><strong>git status</strong>   # to check git status</p><p id="cc722bad-97b6-4ae5-bb31-b1791b5dd5b7" class="">
+<strong>git init </strong>    # to create git repo</p><p id="9470c70b-a9cc-40d9-b16d-496f8ccff3f9" class="">
+<strong>git add</strong> --a  # all file go to staging area or tracking</p><p id="316dcc71-a50c-4c80-874c-361427e88206" class="">
+</p><p id="d40ae413-c49d-4b3d-af95-363bd37b95d8" class=""><strong>git add .</strong>       # all file go to staging area or tracking</p><p id="15d004a5-9c12-40f1-9269-ddf055e0bf4c" class="">
+</p><p id="6b74f783-e6d5-4b5f-86ef-6ff0fc1364b9" class=""><strong>git add &lt;file_name&gt;</strong> # chosing file go to staging area</p><p id="1abfccb7-62ee-4f86-b1ee-9cec98ecf616" class="">
+</p><p id="59041484-7104-495d-ac22-002736118ff7" class=""><strong>git restore --staged &lt;file_name&gt;</strong>        #Unstage the file</p><p id="40ee9678-e7d8-48ba-832c-eb531af73de0" class="">
+</p><p id="61f281ee-eb33-45fc-94bf-e8ba88372547" class=""><strong>git checkout -- &lt;file_name&gt;</strong>     #Unmodify the change</p><p id="47fdd39b-c797-45c2-ac8b-5950ec06ca3b" class="">
+</p><p id="a9632848-c6d7-4eb5-8d1b-d9167becf12b" class="">git checkout -f      #Unchange and go the last commit </p><p id="0929da2b-85f3-44b8-8bda-2698d9ef0f45" class="">
+<strong>git commit -m &quot;first commit&quot;</strong>      # take a file screenshot</p><p id="a0cc3767-1428-4e81-94bf-2f5515c405d5" class="">
+</p><p id="ad658006-4256-4eb5-92bb-60a188e54e99" class=""><strong>git commit -a -m “update message”</strong>  #direct commit  which already in tracking</p><p id="776844fc-2b9f-444e-b2ce-7501fd43c83b" class="">#also called skiping staging area</p><p id="7a2c469d-91f4-410b-9713-b7defa9ea876" class="">
+</p><p id="5301d474-bff0-4e25-9c63-1b3dfb3a5648" class=""><strong>git commit --amend </strong>       #Change old commit</p><p id="603f6f02-266f-4562-bc2e-77775cb4af9d" class="">
+</p><p id="8624927e-cde4-47a1-a8c4-37d66d9fefcf" class=""><strong>git mv file.txt fileRenamed.txt</strong>   #Rename the file and already staged</p><p id="a6f0aca8-6cea-4905-91f4-01f569b4fccd" class="">
+</p><p id="c3373fb0-8679-479b-8ac6-14838b4d150c" class=""><strong>git rm  --cached file_name</strong>  #untrack the file</p><p id="767e897b-f2b9-45df-b76e-2ccd88458895" class="">
+<strong>rm -rf .git</strong>  # to delete the .git file (git repo)</p><p id="0795dab1-be7d-4621-835b-235735439968" class="">
+</p><p id="9dbc74e3-39fb-4633-899b-1e5303a6a938" class=""><strong>git rm file.txt </strong>  # remove the file</p><p id="4c93326a-f2a2-466e-906f-d0b65b89512c" class="">
+<strong>git clone &lt;URL&gt; &lt;foldername_which_you_want&gt;</strong> # to clone repo</p><p id="034554e4-4ad7-4198-a477-1992aefba8b2" class="">
+</p><p id="11d12f5d-9fd1-4337-88b6-25fceeb909e9" class="">ignore file in <strong>Git</strong><div class="indented"><ul id="57d28651-f63d-43d5-b828-5e7dcb5fae17" class="bulleted-list"><li style="list-style-type:disc">Create a <strong>.gitignore</strong> file</li></ul><ul id="2cc6ccfb-aab9-499e-89de-9133215762c0" class="bulleted-list"><li style="list-style-type:disc">write into file which which you want to hide</li></ul><ul id="2ce4df64-c268-448c-bcc4-cf42d57fdcde" class="bulleted-list"><li style="list-style-type:disc">if you want to ignore specific file like log file then write in <strong>.gitignore</strong> file the * and the file extension name ex:<strong> *.log</strong></li></ul><ul id="35228817-6308-4bda-bdaf-49c0a98ea2ab" class="bulleted-list"><li style="list-style-type:disc">if you want to ignore specific folder then write the name of folder(ex: <strong>foldername/</strong>) in the <strong>.gitignore </strong>file.</li></ul><ul id="ce2e8f10-c975-40ed-8002-77430f7d87eb" class="bulleted-list"><li style="list-style-type:disc">if you have 2 folders with same name but 1 in into another folder and you want to ignore outer file then you write ex: <strong>/foldername/</strong> </li></ul><ul id="fd586833-036d-4191-9e61-0e96b3619f9d" class="bulleted-list"><li style="list-style-type:disc">if you want to ignore under the folder directory then first write folder name and then directory name ex: <strong>FolderName/DirectoryName</strong></li></ul></div></p><p id="f5868f00-f54c-47b8-8e5e-aaa9b3dacdf7" class="">
+</p><p id="c3c1784b-e74a-46dd-a136-9ae15eb73519" class=""><strong>git log</strong>      # to see commits</p><ul id="9299fa21-21dc-42ec-8529-32b0760dfd88" class="bulleted-list"><li style="list-style-type:disc"><strong>git log -p</strong>  #show what is add and what is remove</li></ul><ul id="f8de9377-496b-41ac-8d4e-f77613ed3b00" class="bulleted-list"><li style="list-style-type:disc"><strong>git log -p -2</strong>   #show to commits only</li></ul><ul id="b1b2cc12-736c-46ee-9a65-2fda2cff6971" class="bulleted-list"><li style="list-style-type:disc"><strong>git log --stat  </strong> #show summary of add or delete</li></ul><ul id="7cc4c7a4-ceb3-4724-9e85-ae4bd11e7f17" class="bulleted-list"><li style="list-style-type:disc"><strong>git log --pretty=oneline</strong>    #show commits in one line</li></ul><ul id="0f61d5c7-948f-468a-a2a7-e0d6bdc3e5bd" class="bulleted-list"><li style="list-style-type:disc"><strong>git log --pretty=short </strong>    #show commits in shorts</li></ul><ul id="a6c952e4-baf8-4413-b393-21f6dc78fbc2" class="bulleted-list"><li style="list-style-type:disc"><strong>git log --pretty=full </strong>    #show commits in more details(author and commit)</li></ul><ul id="8d6b56dc-315a-450a-9ad1-b07db19938c7" class="bulleted-list"><li style="list-style-type:disc"><strong>git log --since=2.days</strong>    #last 2 days commits</li></ul><ul id="66fe885f-8e88-4b3f-8a20-d55f30b49f12" class="bulleted-list"><li style="list-style-type:disc"><strong>git log --since=2.weeks</strong>    #last 2 weeks commits</li></ul><ul id="8ebd3efc-7aa2-41e1-8315-839dceb768ea" class="bulleted-list"><li style="list-style-type:disc"><strong>git log --since=2.months</strong>    #last 2 months commits</li></ul><ul id="7f4a8242-e244-44d5-a774-76153e2c6ac1" class="bulleted-list"><li style="list-style-type:disc"><strong>git log --since=2.years</strong>    #last 2 years commits</li></ul><p id="50c5284d-55ed-4765-bef0-2c5b9555b0d0" class="">
+</p><h3 id="2749084d-4369-4bd4-bc45-94f2a006652d" class="">How to deploy a SSH key to connect with Github account</h3><ol type="1" id="4b43276a-738c-4322-bd1f-55bd2fa6e9da" class="numbered-list" start="1"><li>Open Git Bash.</li></ol><ol type="1" id="0469a6ee-dfee-4ec6-8fa3-eb16f9daf589" class="numbered-list" start="2"><li>Paste the text below, substituting in your GitHub email address.<pre id="38ff7a70-b061-4b9f-9746-288823668aea" class="code"><code>$ ssh-keygen -t ed25519 -C &quot;your_email@example.com&quot;
+
+Note: If you are using a legacy system that doesn&#x27;t support the Ed25519 algorithm, use:
+
+$ ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code></pre></li></ol><p id="b84b7244-2b46-49f6-afde-f90707b1df5a" class="">
+</p><ol type="1" id="c2c81c04-8239-419c-93ac-28e82f9bc336" class="numbered-list" start="3"><li>Firstly type yes and then if you want to fill the option or skip this to Press the ENTER.</li></ol><ol type="1" id="d8d0bcf8-636b-45e4-9501-eb7437d5c229" class="numbered-list" start="4"><li>Adding your SSH key to the ssh-agent<ol type="a" id="5413a9ac-e817-4f92-ba6d-7ed2496721b1" class="numbered-list" start="1"><li>Ensure the ssh-agent is running. You can use the &quot;Auto-launching the ssh-agent&quot; instructions in &quot;<a href="https://docs.github.com/en/articles/working-with-ssh-key-passphrases">Working with SSH key passphrases</a>
+&quot;, or start it manually:<pre id="1c202637-2e53-448f-8d67-92a923707e39" class="code"><code># start the ssh-agent in the background
+$ eval &quot;$(ssh-agent -s)&quot;
+&gt; Agent pid 59566</code></pre></li></ol><ol type="a" id="493d96cb-0459-4818-b952-a41db28711d6" class="numbered-list" start="2"><li>Add your SSH private key to the ssh-agent. If you created your key with a different name, or if you are adding an existing key that has a different name, replace <em>id_ed25519</em>
+ in the command with the name of your private key file.<pre id="99a1667b-231e-4be5-80e2-1d29a74ff3ac" class="code"><code>$ ssh-add ~/.ssh/id_ed25519</code></pre></li></ol><ol type="a" id="cbc1f333-b0be-4105-bfb0-52c952dfcff7" class="numbered-list" start="3"><li>1. Add the SSH key to your account on GitHub. For more information, see &quot;<a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account">Adding a new SSH key to your GitHub account</a>.</li></ol><p id="7a17f2ce-ea5c-424f-b989-0c3943f9f918" class="">
+</p></li></ol><ol type="1" id="94c8e191-893a-4dd0-8f9b-22aad43fde50" class="numbered-list" start="5"><li>Copy the SSH key to your clipboard<pre id="accb4615-b9b9-411f-ab8f-94b8dbdbe2e4" class="code"><code>clip &lt; ~/.ssh/id_rsa.pub</code></pre></li></ol><ol type="1" id="a0350571-031b-4431-aaef-da760b93b5c6" class="numbered-list" start="6"><li>Go to setting &gt; SSH and GPG keys &gt; New SSH key and paste</li></ol><p id="b95dd7cd-7e12-4ee6-95c7-b6bdaf153337" class="">
+</p><p id="358932aa-9f83-4a76-8961-e0b9997342cb" class="">Note:</p><p id="a4116755-acd1-45b2-b58a-9a64697bf07f" class="">you also follow this page to configure the remote access.</p><p id="74186446-92ea-4ab2-8752-9aeebe7164ad" class=""><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent</a></p><p id="6b8f6e04-175a-48f7-8c17-ae68d6a1b9dd" class="">
+</p><p id="2fd05691-d983-4cf3-aeaf-f79d011d13a6" class="">
+</p><p id="d59a49e7-97ee-449f-ab71-2b803c81ec04" class=""><strong>git remote</strong>   #show which is repo is add</p><p id="5a9ffbf9-0658-48fe-9bdc-b6c2d0d892a2" class="">
+</p><p id="5c0237bd-cb39-47ad-bc30-4dbbacbf705d" class=""><strong>git remote -v </strong>   #show URL</p><p id="d1bb9ff0-68b6-4f88-91d1-e35aa1f15538" class="">
+</p><p id="7136c088-6167-49e7-809b-60633ce7586a" class=""><strong>git remote add origin git@github.com:Capt-SumitDas/test.git   #add a repo and give a name origin</strong></p><p id="70e55583-9308-4454-ad78-efef7fdab8fd" class="">
+</p><p id="bf70532b-24d6-4037-b0b0-6137c4db4f11" class=""><strong>git push -u origin master</strong>   #to push your work into Github repo</p><p id="80e32c5f-38db-4e3f-8401-00659c6b552f" class="">
+</p><p id="c89c18b8-e2ef-4ba3-8ca1-454c356b71b7" class=""><strong>git diff </strong>   # compare the staging to working area</p><p id="f34cb0ad-3b4e-4671-bc31-bf40edc5cb1d" class="">
+</p><p id="42789f40-de12-4457-b946-e806068720b9" class=""><strong>git diff --staged</strong>  #compare last commit to current staging area</p><p id="2e4e8893-e666-48c5-b6f4-5b3048d3b412" class="">
+</p><p id="fab46589-8d94-4103-bcbc-e630218df4ce" class="">
+</p><p id="eb57ce9a-39cd-49a6-af0d-3ca51f10ee43" class="">git config --global <a href="http://alias.st">alias.st</a> status     #use st as status,   means we attach st as status.   alias means use custom command a original command or want to short command. </p><p id="eebe15c7-8209-4bdf-ad6c-c0b70c7ebf69" class="">
+</p><p id="c1aeef80-bfb5-45ec-bfda-5a087a8c2c38" class="">one more example</p><p id="6c25c1c8-5ec7-40a0-94d2-0f19afdc92db" class="">git config —global alias.unstage ‘restore --staged --’ </p><p id="4fffcc7e-a9c8-41b7-8a06-65df538d1ac6" class="">
+</p><p id="6457b971-45cf-42b4-8a1f-9c40726d268c" class="">
+</p><p id="b06ca2c2-5158-48e2-916a-91877142d5e3" class="">git checkout -b develop  #create a branch and change</p><p id="46997b74-1b7a-47ac-879b-d6438d7fe9e9" class="">
+</p><p id="a4d0678d-8363-438a-ba07-8c961dbc8403" class="">git checkout master    # Change branch</p><p id="e3d78460-5b1b-4217-845f-5938d1b5e1ca" class="">
+</p><p id="a3813eac-1d48-4d00-8c65-5f54e5431872" class="">git branch  #to see branchs</p><p id="4f0619c8-849b-4e29-bc29-6a10d5bc8a08" class="">
+</p><p id="a362ef90-4c3d-4d4a-8378-6a2d5cbef002" class="">git branch -v  # to see last commit msg with branchs</p><p id="78f0e4a3-736f-467d-8d8b-9d64a3e1f20b" class="">
+</p><p id="2e80d2ae-05a9-4cf7-b3de-586946710fbf" class="">git merge &lt;want to copy the branch&gt;  #for merge the braches</p><p id="a9d4c6ee-2d58-4fcd-9fd2-e6bd2e44bca4" class="">
+</p><p id="bcac6189-7d98-41ff-ab46-d19fda9c3216" class="">git branch --merged  #already merged branches</p><p id="636b7621-d060-4924-8f93-bbc47f2866b3" class="">
+</p><p id="14935c4a-2f9c-44cd-aa4f-24fa38c99940" class="">git branch --no-merged  #not merged branches</p><p id="aa4bb104-512e-4299-a215-2e887cf1f095" class="">
+</p><p id="b3661238-9711-4d88-9305-0873777ea7fe" class="">git branch -d &lt;branch name&gt; #it not delete the not merged branch</p><p id="087716e8-6bfd-4561-ba8b-8ca90bef7620" class="">git branch -D &lt;branch name&gt; #no error and branch gets deleted</p><p id="5067b24c-f321-4509-900f-9eeed4705bbb" class=""> </p><p id="75b156fa-16f7-4847-8d1b-ceb63558bbb8" class="">
+</p><p id="88617607-fb22-4968-a779-b53052404135" class="">git remote -v   #to check remote repo</p><p id="cd77622a-5d1e-4b9f-96ce-db357eb8e554" class="">
+</p><p id="c6d9dfc9-15cf-433c-befb-757abe8bb70c" class="">git remote add origin <a href="https://github.com/Capt_Sumitdas/demo.git">https://github.com/Capt_Sumitdas/demo.git</a>  # add repo</p><p id="9651bcd1-7c84-44e2-8603-e45ebf9af3b2" class="">
+</p><p id="d7e6e808-52fa-4e09-adcc-ee2f0092324b" class="">git push -u origin master  #push on master branch</p><p id="1ae467b8-b9fc-487e-994a-06533e7ef6f1" class="">
+</p><p id="5c4fa352-03ff-4a3b-91b6-16d0be6cd144" class="">git push origin &lt;branch name&gt;</p><p id="af225987-3f6f-4d08-b172-0cbefbaf048f" class="">
+</p><p id="e89a5940-972a-40e1-ae04-2b78949bfd19" class="">git push origin &lt;Branch name&gt;:&lt;New Branch name&gt;  </p><p id="15099410-40b0-44bf-95e6-216d35bdde0c" class="">
+</p><p id="358b7212-86b2-45a8-bd49-7b19aa225b69" class="">git push -d origin &lt;Branch name&gt; #To delete the Branch</p><p id="0417ccca-6e0e-4ba4-8924-d28060d7a31c" class="">
+</p><p id="9fc9ae96-122f-416f-a3ba-a114083520a7" class="">
+</p><figure id="42f28552-d8f7-45e0-bade-892fc9675d33" class="image"><a href="Git/2023-01-04_21_00_44-SWTM-2088_Atlassian-Git-Cheatsheet.pdf.png"><img style="width:1311px" src="Git/2023-01-04_21_00_44-SWTM-2088_Atlassian-Git-Cheatsheet.pdf.png"/></a></figure><figure id="390dd939-7433-45c9-b393-59af73a976d6" class="image"><a href="Git/2023-01-04_21_01_20-NVIDIA_GeForce_Overlay.png"><img style="width:1241px" src="Git/2023-01-04_21_01_20-NVIDIA_GeForce_Overlay.png"/></a></figure><p id="89e2c56e-35e4-4790-8b16-ae052e375499" class="">
+</p><p id="89a86340-7ee8-430b-929e-ca7c76ad77b3" class="">
+</p><p id="f4d09c42-9e45-4792-afb2-4ef9e21f1032" class="">
+</p></div></article></body></html>

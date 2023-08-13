@@ -48,6 +48,9 @@ const subPsychology5Start = { x: 700, y: 810 };
 const InternalsecurityStart = { x: 400, y: 830 };
 const subInternalsecurity1Start = { x: 700, y: 710 };
 
+const VersionControlStart = { x: 400, y: 930 };
+const subVersionControl1Start = { x: 700, y: 710 };
+
 
 function drawCurvedLineWithAdjustedArrow(lineGroup, pointA, pointB) {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -153,5 +156,8 @@ function showSubsections(sectionId) {
     }
     else if (sectionId === "Internalsecurity") {
         drawCurvedLineWithAdjustedArrow(lineGroup, InternalsecurityStart, subInternalsecurity1Start);
+    }
+    else if (sectionId === "VersionControl") {
+        drawCurvedLineWithAdjustedArrow(lineGroup, VersionControlStart, subVersionControl1Start);
     }
 }
